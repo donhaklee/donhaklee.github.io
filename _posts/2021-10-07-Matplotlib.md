@@ -1,6 +1,6 @@
 
 ---
-layout: post
+layout: single
 title:  "Matplotlib"
 ---
 # Matplotlib
