@@ -2,12 +2,12 @@
 layout: post
 title:  "Numpy"
 ---
-# 해당 블로그는 자료정리 및 공부, 개발 목적으로 사용됩니다.
+# numpy
 
 
+# numpy import
 
 ```python
-# numpy import
 import numpy as np
 from numpy import exp
 from numpy import *
@@ -20,9 +20,8 @@ numpy는 행렬과 같이 계산됨
     [1 2] <class 'numpy.ndarray'>
     
 
-
-```python
 # numpy : vector 생성
+```python
 A = np.array([1,2,3])
 B = np.array([4,5,6])
 # 단순출력
@@ -68,8 +67,8 @@ print(c)
     
 
 
-```python
 # 1.행렬곱 (dot product)
+```python
 print("1.행렬곱")
 a = np.array([[1,2,3],[4,5,6]])
 b = np.array([[-1,-2],[-3,-4],[-5,-6]])
@@ -88,8 +87,8 @@ print(c)
     
 
 
-```python
 # 2.broadcast : 크기가 다른 두 행렬간에 사칙연산을 시켜줌
+```python
 print("2.broadcast")
 a = np.array([[1,2],[3,4]])
 b = 5
@@ -123,7 +122,6 @@ print(b)
      [2 4 6]]
     
 
-
 ```python
 # vector 전치행렬 : 행을 열로 열을 행으로
 print("vector 전치행렬")
@@ -147,8 +145,8 @@ print(f)
     
 
 
-```python
 # 3.index / slice / iterator
+```python
 print("indexing, slicing")
 a = np.array([10,20,30,40,50,60]).reshape(3,2)
 print(a.shape)
@@ -199,10 +197,10 @@ while not it.finished:
     current value =>  80
     
 
+concatenate : 기존 행렬에 행,열을 추가하기 위해 사용
 
 ```python
 '''
-concatenate : 기존 행렬에 행,열을 추가하기 위해 사용
 머신러닝의 회귀코드 구현 시 가중치(weight)와 바이어스(bias)를 별도로 구분하지 않고
 하나의 행렬로 취급하기 위한 프로그래밍 구현 기술
 '''
@@ -236,7 +234,7 @@ print(c)
      [  40   50   60 2000]]
     
 
-
+# csv파일 행과 열로 나누어 읽기
 ```python
 # numpy usefull function
 # seperator로 구분된 파일에서 데이터를 읽기 위한 numpy.loadtxt
@@ -250,48 +248,11 @@ print("t_data.ndim = ", t_data.ndim, ", t_data.shape = ", t_data.shape)
 ```
 
 
-    ---------------------------------------------------------------------------
-
-    OSError                                   Traceback (most recent call last)
-
-    <ipython-input-38-76069c86ad3e> in <module>
-          1 # numpy usefull function
-          2 # seperator로 구분된 파일에서 데이터를 읽기 위한 numpy.loadtxt
-    ----> 3 loaded_data = np.loadtxt('.csv', delimiter=',', dtype=np.float32)
-          4 x_data = loaded_data[:,0:-1]
-          5 t_data = loaded_data[:,[-1]]
-    
-
-    ~\anaconda3\lib\site-packages\numpy\lib\npyio.py in loadtxt(fname, dtype, comments, delimiter, converters, skiprows, usecols, unpack, ndmin, encoding, max_rows)
-        959             fname = os_fspath(fname)
-        960         if _is_string_like(fname):
-    --> 961             fh = np.lib._datasource.open(fname, 'rt', encoding=encoding)
-        962             fencoding = getattr(fh, 'encoding', 'latin1')
-        963             fh = iter(fh)
-    
-
-    ~\anaconda3\lib\site-packages\numpy\lib\_datasource.py in open(path, mode, destpath, encoding, newline)
-        193 
-        194     ds = DataSource(destpath)
-    --> 195     return ds.open(path, mode, encoding=encoding, newline=newline)
-        196 
-        197 
-    
-
-    ~\anaconda3\lib\site-packages\numpy\lib\_datasource.py in open(self, path, mode, encoding, newline)
-        533                                       encoding=encoding, newline=newline)
-        534         else:
-    --> 535             raise IOError("%s not found." % path)
-        536 
-        537 
-    
-
-    OSError: .csv not found.
+  
 
 
-
-```python
 # numpy.random.rand
+```python
 random_n1 = np.random.rand(3)
 random_n2 = np.random.rand(1,3)
 random_n3 = np.random.rand(3,1)
@@ -316,8 +277,8 @@ print(np.log(x))
     
 
 
-```python
 # max. min. argmax, argmin
+```python
 print("최대최소")
 x = np.array([[2,4,6],[1,2,3],[0,5,8]])
 print("max = ", np.max(x, axis=0)) #열기준 최대
