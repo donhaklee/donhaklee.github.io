@@ -1,0 +1,385 @@
+```python
+# numpy import
+import numpy as np
+from numpy import exp
+from numpy import *
+'''
+2차원 list끼리의 합은 리스트가 추가되는 형식이지만
+numpy는 행렬과 같이 계산됨
+'''
+```
+
+    [1 2] <class 'numpy.ndarray'>
+    
+
+
+```python
+# numpy : vector 생성
+A = np.array([1,2,3])
+B = np.array([4,5,6])
+# 단순출력
+print(A,B)
+# 형상출력
+print(A.shape, B.shape)
+# 차원출력
+print(A.ndim, B.ndim)
+
+print()
+print()
+# numpy : matrix 생성 (행렬)
+print("matrix 생성")
+A = np.array([[1,2,3],[4,5,6]])
+B = np.array([[-1,-2,-3],[-4,-5,-6]])
+# 단순출력
+print(A)
+print(B)
+# 형상출력
+print(A.shape, B.shape)
+# 차원출력
+print(A.ndim, B.ndim)
+
+# A행렬 형 변환 (2x3 => 3x2)
+c = A.reshape(3,2)
+print(c)
+```
+
+    [1 2 3] [4 5 6]
+    (3,) (3,)
+    1 1
+    
+    
+    [[1 2 3]
+     [4 5 6]]
+    [[-1 -2 -3]
+     [-4 -5 -6]]
+    (2, 3) (2, 3)
+    2 2
+    [[1 2]
+     [3 4]
+     [5 6]]
+    
+
+
+```python
+# 1.행렬곱 (dot product)
+print("1.행렬곱")
+a = np.array([[1,2,3],[4,5,6]])
+b = np.array([[-1,-2],[-3,-4],[-5,-6]])
+c = np.dot(a,b) # 행렬곱 수행
+print(a.shape,"x", b.shape, "=",c.shape)
+print(c)
+
+
+
+```
+
+    1.행렬곱
+    (2, 3) x (3, 2) = (2, 2)
+    [[-22 -28]
+     [-49 -64]]
+    
+
+
+```python
+# 2.broadcast : 크기가 다른 두 행렬간에 사칙연산을 시켜줌
+print("2.broadcast")
+a = np.array([[1,2],[3,4]])
+b = 5
+print(a+b)
+print()
+a = np.array([[1,2],[3,4]])
+b = np.array([4,5])
+print(a+b)
+print()
+
+
+a = np.array([[1,2],[3,4],[5,6]])
+b = a.T
+print(a.shape, b.shape)
+print(a)
+print(b)
+```
+
+    2.broadcast
+    [[6 7]
+     [8 9]]
+    
+    [[5 7]
+     [7 9]]
+    
+    (3, 2) (2, 3)
+    [[1 2]
+     [3 4]
+     [5 6]]
+    [[1 3 5]
+     [2 4 6]]
+    
+
+
+```python
+# vector 전치행렬 : 행을 열로 열을 행으로
+print("vector 전치행렬")
+c = np.array([1,2,3,4,5])
+d = c.T
+e = c.reshape(1,5) # 벡터를 강제로 행렬로 만들기 위해선 reshape 필요
+f = e.T
+print("c = ",c.shape, "d = ",d.shape) # 전치행렬로 변환 안됨
+print("e = ",e.shape, "f = ",f.shape) 
+print(f)
+```
+
+    vector 전치행렬
+    c =  (5,) d =  (5,)
+    e =  (1, 5) f =  (5, 1)
+    [[1]
+     [2]
+     [3]
+     [4]
+     [5]]
+    
+
+
+```python
+# 3.index / slice / iterator
+print("indexing, slicing")
+a = np.array([10,20,30,40,50,60]).reshape(3,2)
+print(a.shape)
+print(a)
+print("a[0:-1, 1:2] == ", a[0:-1, 1:2])
+print("a[:,0] == ", a[:,0])
+print("a[:,:] == ", a[:,:])
+```
+
+    indexing, slicing
+    (3, 2)
+    [[10 20]
+     [30 40]
+     [50 60]]
+    a[0:-1, 1:2] ==  [[20]
+     [40]]
+    a[:,0] ==  [10 30 50]
+    a[:,:] ==  [[10 20]
+     [30 40]
+     [50 60]]
+    
+
+
+```python
+# iterator : 행렬 모든 원소를 access하는 경우에 사용
+print('iterator')
+a = np.array([[10,20,30,40], [50,60,70,80]])
+print(a)
+print(a.shape)
+it = np.nditer(a, flags=['multi_index'], op_flags=['readwrite'])
+while not it.finished:
+    idx = it.multi_index
+    print("current value => ", a[idx])
+    it.iternext()
+```
+
+    iterator
+    [[10 20 30 40]
+     [50 60 70 80]]
+    (2, 4)
+    current value =>  10
+    current value =>  20
+    current value =>  30
+    current value =>  40
+    current value =>  50
+    current value =>  60
+    current value =>  70
+    current value =>  80
+    
+
+
+```python
+'''
+concatenate : 기존 행렬에 행,열을 추가하기 위해 사용
+머신러닝의 회귀코드 구현 시 가중치(weight)와 바이어스(bias)를 별도로 구분하지 않고
+하나의 행렬로 취급하기 위한 프로그래밍 구현 기술
+'''
+a = np.array([[10,20,30],[40,50,60]])
+print(a.shape)
+
+# a matrix에 행을 추가할 행렬, 1행 3열로 reshape
+# 행을 추가하기 때문에 우선 열을 3열로 만들어야 함
+row_add = np.array([70,80,90]).reshape(1,3)
+# a matrix에 열을 추가할 행렬, 2행 1열로 생성
+# 열을 추가하기 때문에 우선 행을 2행으로 만들어야 함
+column_add = np.array([1000,2000]).reshape(2,1)
+print(column_add.shape)
+#numpy.concetenate에서 axis = 0 행 기준
+# a 행렬에 row_add 행렬 추가
+b = np.concatenate((a, row_add), axis=0)
+print(b)
+
+#numpy.concatenate 에서 axis = 1 열 기준
+# b 행렬에 column_add 행렬 추가
+c = np.concatenate((a, column_add), axis=1)
+print(c)
+```
+
+    (2, 3)
+    (2, 1)
+    [[10 20 30]
+     [40 50 60]
+     [70 80 90]]
+    [[  10   20   30 1000]
+     [  40   50   60 2000]]
+    
+
+
+```python
+# numpy usefull function
+# seperator로 구분된 파일에서 데이터를 읽기 위한 numpy.loadtxt
+loaded_data = np.loadtxt('.csv', delimiter=',', dtype=np.float32)
+x_data = loaded_data[:,0:-1] # 1열부터 3열까지 가져옴
+t_data = loaded_data[:,[-1]]
+
+# 데이터 차원 및 shape확인
+print("x_data.ndim = ", x_data.ndim, ", x_data.shape = ", x_data.shape)
+print("t_data.ndim = ", t_data.ndim, ", t_data.shape = ", t_data.shape)
+```
+
+
+    ---------------------------------------------------------------------------
+
+    OSError                                   Traceback (most recent call last)
+
+    <ipython-input-38-76069c86ad3e> in <module>
+          1 # numpy usefull function
+          2 # seperator로 구분된 파일에서 데이터를 읽기 위한 numpy.loadtxt
+    ----> 3 loaded_data = np.loadtxt('.csv', delimiter=',', dtype=np.float32)
+          4 x_data = loaded_data[:,0:-1]
+          5 t_data = loaded_data[:,[-1]]
+    
+
+    ~\anaconda3\lib\site-packages\numpy\lib\npyio.py in loadtxt(fname, dtype, comments, delimiter, converters, skiprows, usecols, unpack, ndmin, encoding, max_rows)
+        959             fname = os_fspath(fname)
+        960         if _is_string_like(fname):
+    --> 961             fh = np.lib._datasource.open(fname, 'rt', encoding=encoding)
+        962             fencoding = getattr(fh, 'encoding', 'latin1')
+        963             fh = iter(fh)
+    
+
+    ~\anaconda3\lib\site-packages\numpy\lib\_datasource.py in open(path, mode, destpath, encoding, newline)
+        193 
+        194     ds = DataSource(destpath)
+    --> 195     return ds.open(path, mode, encoding=encoding, newline=newline)
+        196 
+        197 
+    
+
+    ~\anaconda3\lib\site-packages\numpy\lib\_datasource.py in open(self, path, mode, encoding, newline)
+        533                                       encoding=encoding, newline=newline)
+        534         else:
+    --> 535             raise IOError("%s not found." % path)
+        536 
+        537 
+    
+
+    OSError: .csv not found.
+
+
+
+```python
+# numpy.random.rand
+random_n1 = np.random.rand(3)
+random_n2 = np.random.rand(1,3)
+random_n3 = np.random.rand(3,1)
+print(random_n1, "shape1 = ", random_n1.shape)
+print(random_n2, "shape2 = ", random_n2.shape)
+print(random_n3, "shape3 = ", random_n3.shape)
+
+x = np.array([2,4,6,8])
+print(np.sum(x))
+print(np.exp(x))
+print(np.log(x))
+```
+
+    [0.77646241 0.61511077 0.83818717] shape1 =  (3,)
+    [[0.45151031 0.30960306 0.02755892]] shape2 =  (1, 3)
+    [[0.99639306]
+     [0.64811393]
+     [0.3317169 ]] shape3 =  (3, 1)
+    20
+    [   7.3890561    54.59815003  403.42879349 2980.95798704]
+    [0.69314718 1.38629436 1.79175947 2.07944154]
+    
+
+
+```python
+# max. min. argmax, argmin
+print("최대최소")
+x = np.array([[2,4,6],[1,2,3],[0,5,8]])
+print("max = ", np.max(x, axis=0)) #열기준 최대
+print("min = ", np.min(x, axis=1)) #행기준 최소
+print("argmas = ", np.argmax(x, axis=0)) # 열기준 최대
+print("argmin = ", np.argmin(x, axis=1)) # 행기준 최소
+print()
+print("ones, zeros")
+a = np.ones([3,3])
+print(a.shape, a)
+b = np.zeros([3,2])
+print(b.shape, b)
+
+
+```
+
+    최대최소
+    max =  [2 5 8]
+    min =  [2 1 0]
+    argmas =  [0 2 2]
+    argmin =  [0 0 0]
+    
+    ones, zeros
+    (3, 3) [[1. 1. 1.]
+     [1. 1. 1.]
+     [1. 1. 1.]]
+    (3, 2) [[0. 0.]
+     [0. 0.]
+     [0. 0.]]
+    
+
+
+```python
+# matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+%matplotlib inline
+x_data = np.random.rand(100)
+y_data = np.random.rand(100)
+
+plt.title('scatter plot')
+plt.grid()
+plt.scatter(x_data,y_data, color='b',marker='o')
+plt.show()
+```
+
+
+    
+![png](output_11_0.png)
+    
+
+
+
+```python
+#line plot
+x_data = [x for x in range(-5,5)]
+y_data = [y*y for y in range(-5,5)]
+plt.title('line plot')
+plt.grid()
+plt.plot(x_data, y_data, color='b')
+plt.show()
+```
+
+
+    
+![png](output_12_0.png)
+    
+
+
+
+```python
+
+```
