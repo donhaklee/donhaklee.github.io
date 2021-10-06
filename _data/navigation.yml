@@ -2,3 +2,12 @@
 main:
   - title: "Quick-Start Guide"
     url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+  - title: "Machine Learning"
+  -   url: https://mmistakes.github.io/minimal-mistakes/about/
+  - title: "Python"
+     url: /python/
+  - title: "Coding-test"
+     url: /coding/
+  - title: "Service"
+     url: /service/
+
