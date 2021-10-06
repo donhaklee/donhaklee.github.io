@@ -3,7 +3,7 @@ main:
   - title: "Quick-Start Guide"
     url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
   - title: "Machine Learning"
-     url: /about/
+     url: /machine/
   - title: "Python"
      url: /python/
   - title: "Coding-test"
