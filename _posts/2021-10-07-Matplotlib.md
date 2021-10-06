@@ -22,7 +22,7 @@ plt.show()
 
 
     
-![png](./images/output_11_0.png)
+![png](donhaklee.github.io/images/output_11_0.png)
     
 
 
@@ -39,5 +39,5 @@ plt.show()
 
 
     
-![png](./images/output_12_0.png)
+![png](donhaklee.github.io/images/output_12_0.png)
     
