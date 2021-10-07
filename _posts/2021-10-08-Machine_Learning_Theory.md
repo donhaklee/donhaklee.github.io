@@ -14,7 +14,7 @@
 - **회귀(regression)** : training data를 이용하여 연속적인 값을 예측하는 것
 - **분류(classification)** : traning data를 이용하여 주어진 입력값이 어떤 종류의 값인지 구별
 
-
+<br><br>
 
 **2) 비지도학습 (unsupervised)**<br>
 training data에 정답은 없고 입력 데이터만 있기 때문에 입력에 대한 정답을 찾는 것이 아닌 입력데이터의 패턴, 특성 등을 학습을 통해 발견하는 것
