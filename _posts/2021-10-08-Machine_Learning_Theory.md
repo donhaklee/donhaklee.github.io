@@ -9,12 +9,12 @@
 - **비지도학습 (unsupervised)** : 군집화(clustering)
 
 
-###1) 지도학습 (supervised learning)
+1) ###지도학습 (supervised learning)
 입력값과 정답을 포함하는 트레이닝 데이터를 이용하여 학습하고 그 결과를 바탕으로 미지의 데이터에 대해 미래를 예측하는 방법
 #### - **회귀(regression)** : training data를 이용하여 연속적인 값을 예측하는 것
 #### - **분류(classification)** : traning data를 이용하여 주어진 입력값이 어떤 종류의 값인지 구별
 
-###2) 비지도학습 (unsupervised)
+2) ###비지도학습 (unsupervised)
 training data에 정답은 없고 입력 데이터만 있기 때문에 입력에 대한 정답을 찾는 것이 아닌 입력데이터의 패턴, 특성 등을 학습을 통해 발견하는 것
 ####- **군집화(clustering)**
 입력만 있기 때문에 입력의 특성과 분포를 묶어 집합화
