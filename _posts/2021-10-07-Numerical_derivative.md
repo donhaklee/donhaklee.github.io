@@ -69,7 +69,8 @@ def func3(input_obj):
 input = np.array([1.0, 2,0])
 numerical_derivative(func3, input)
 
-# ex4) 4변수 함수 예제 f(w,x,y,z) = wx + xyz + 3w + zy^2, f'(1.0, 2.0, 3.0, 4.0)
+# ex4) 4변수 함수 예제 f(w,x,y,z) = wx + xyz + 3w + zy^2
+# f'(1.0, 2.0, 3.0, 4.0)
 def func4(input_obj):
     w = input_obj[0,0]
     x = input_obj[0,1]
