@@ -4,3 +4,5 @@ main:
     url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
   - title: "Machine Learning"
     url: https://donhaklee.github.io/_pages/machine.md/
+  - title: "Coding Test"
+    url: https://donhaklee.github.io/_pages/coding.md/
