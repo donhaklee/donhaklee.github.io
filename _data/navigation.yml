@@ -3,6 +3,6 @@ main:
   - title: "Quick-Start Guide"
     url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
   - title: "Machine Learning"
-    url: https://donhaklee.github.io/_pages/machine.md/
+    url: https://donhaklee.github.io/_pages/machine/machine.md/
   - title: "Coding Test"
-    url: https://donhaklee.github.io/_pages/coding.md/
+    url: https://donhaklee.github.io/_pages/coding/coding.md/
