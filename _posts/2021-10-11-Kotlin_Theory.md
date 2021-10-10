@@ -20,13 +20,18 @@ APK
 - Byte code에서 DEX파일을 만듬 (.class)
 - DEX을 받아 러닝 시켜주는 ART
 
-|--|--|
-|APP|
-|JAVA|
-|C/C++|ART|
-|HAL|
-|Kernel|
-|HW|
+<table>
+  <tr>
+    <td rowspan="3">내용</td>
+    <td>내용</td>
+  </tr>
+  <tr>
+    <td>내용</td>
+  </tr>
+  <tr>
+    <td>내용</td>
+  </tr>
+</table>
                       
 ---
 # 1. 코틀린 개요
