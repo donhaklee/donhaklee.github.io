@@ -8,7 +8,7 @@
 - Plugin(sdk tools) - HAXM(Emulator : 하드웨어를 본 딴 소프트웨어)
 - Android Virtual Device
 
-## 컴파일 과정
+## 0-1.컴파일 과정
 ### 1) c언어
 source -- 컴파일 --> exe
 ### 2) java
@@ -20,7 +20,6 @@ source -- 컴파일 --> Byte code -- 인터프리터 --> running
 APK
 - Byte code에서 DEX파일을 만듬 (.class)
 - DEX을 받아 러닝 시켜주는 ART
-```HTML
 <center>
 <table>
   <tr>
@@ -44,9 +43,15 @@ APK
   </tr>
 </table>
 </center>
-```
-Activity
-                      
+Activity : kotlin, resource files
+
+
+## 0.2 component
+앱 구성 중요 컴포넌트
+- Activity : front-end
+- service : back-end
+- broadcast : 방송
+- content provider : 공유
 ---
 # 1. 코틀린 개요
 ### 1) class가 없어도 시작가능, c++과 비슷
