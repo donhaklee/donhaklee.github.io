@@ -13,13 +13,11 @@
 source -- 컴파일 --> exe
 ### 2) java
 source -- 컴파일 --> Byte code -- 인터프리터 --> running
-          a.java                  a.class       jvm
+    a.java                  a.class       jvm
 ### 3) kotlin
 source -- 컴파일 --> Byte code -- 인터프리터 --> running
-                                  <APK>
-                      DEX(.class) + XML (resource)
-                      
-                      ART
+
+
                       
 ---
 # 1. 코틀린 개요
