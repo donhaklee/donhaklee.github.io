@@ -16,9 +16,9 @@ source -- 컴파일 --> Byte code -- 인터프리터 --> running
           a.java                  a.class       jvm
 ### 3) kotlin
 source -- 컴파일 --> Byte code -- 인터프리터 --> running
-                      |          <APK>
+                                  <APK>
                       DEX(.class) + XML (resource)
-                      |
+                      
                       ART
                       
 ---
