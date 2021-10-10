@@ -19,6 +19,14 @@ source -- 컴파일 --> Byte code -- 인터프리터 --> running
 APK
 - Byte code에서 DEX파일을 만듬 (.class)
 - DEX을 받아 러닝 시켜주는 ART
+
+|--|--|
+|APP|
+|JAVA|
+|C/C++|ART|
+|HAL|
+|Kernel|
+|HW|
                       
 ---
 # 1. 코틀린 개요
