@@ -22,28 +22,23 @@ APK
 
 <table>
   <tr>
-    <td rowspan="3">내용</td>
-    <td>내용</td>
+    <td rowspan="2">APP</td>
   </tr>
   <tr>
-    <td>내용</td>
-    <td>내용</td>
+    <td>Java</td>
   </tr>
   <tr>
-    <td>내용</td>
-    <td>내용</td>
+    <td>C/C++</td>
+    <td>ART</td>
   </tr>
   <tr>
-    <td>내용</td>
-    <td>내용</td>
+    <td>HAL</td>
   </tr>
   <tr>
-    <td>내용</td>
-    <td>내용</td>
+    <td>Kernel</td>
   </tr>
   <tr>
-    <td>내용</td>
-    <td>내용</td>
+    <td>HW</td>
   </tr>
 </table>
                       
