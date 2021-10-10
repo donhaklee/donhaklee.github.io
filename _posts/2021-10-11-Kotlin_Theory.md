@@ -1,12 +1,26 @@
 # 환경설정
-1) JDK(Java SE)
+### 1) JDK(Java SE)
 - Java_Home
 - Path <br>
 
-2) Android Studio (JetBrains - intellij)
+### 2) Android Studio (JetBrains - intellij)
 - 안드로이드 sdk - API level 31
 - Plugin(sdk tools) - HAXM(Emulator : 하드웨어를 본 딴 소프트웨어)
 - Android Virtual Device
+
+# 컴파일 과정
+### 1) c언어
+source -- 컴파일 --> exe
+### 2) java
+source -- 컴파일 --> Byte code -- 인터프리터 --> running
+          a.java                  a.class       jvm
+### 3) kotlin
+source -- 컴파일 --> Byte code -- 인터프리터 --> running
+                      |          <APK>
+                      DEX(.class) + XML (resource)
+                      |
+                      ART
+                      
 ---
 # 1. 코틀린 개요
 ### 1) class가 없어도 시작가능, c++과 비슷
