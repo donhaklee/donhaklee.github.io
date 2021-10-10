@@ -43,7 +43,7 @@ APK
   </tr>
 </table>
 </center>
-Activity : kotlin, resource files
+Activity = kotlin + resource files
 
 
 ## 0.2 component
