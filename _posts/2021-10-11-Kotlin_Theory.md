@@ -12,12 +12,13 @@
 ### 1) c언어
 source -- 컴파일 --> exe
 ### 2) java
-source -- 컴파일 --> Byte code -- 인터프리터 --> running
-    a.java                  a.class       jvm
+source -- (a.java) 컴파일 --> Byte code --(a.class) 인터프리터 (jvm)--> running
+                         
 ### 3) kotlin
 source -- 컴파일 --> Byte code -- 인터프리터 --> running
-
-
+<APK>
+- Byte code에서 DEX파일을 만듬 (.class)
+- DEX을 받아 러닝 시켜주는 ART
                       
 ---
 # 1. 코틀린 개요
