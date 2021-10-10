@@ -17,9 +17,10 @@ source -- (a.java) 컴파일 --> Byte code --(a.class) 인터프리터 (jvm)--> 
 ### 3) kotlin
 source -- 컴파일 --> Byte code -- 인터프리터 --> running
 <br>
-<APK>
+APK
 - Byte code에서 DEX파일을 만듬 (.class)
 - DEX을 받아 러닝 시켜주는 ART
+```HTML
 <center>
 <table>
   <tr>
@@ -43,6 +44,8 @@ source -- 컴파일 --> Byte code -- 인터프리터 --> running
   </tr>
 </table>
 </center>
+```
+Activity
                       
 ---
 # 1. 코틀린 개요
