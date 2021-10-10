@@ -1,4 +1,4 @@
-# 환경설정
+# 0.환경설정
 ### 1) JDK(Java SE)
 - Java_Home
 - Path <br>
@@ -8,7 +8,7 @@
 - Plugin(sdk tools) - HAXM(Emulator : 하드웨어를 본 딴 소프트웨어)
 - Android Virtual Device
 
-# 컴파일 과정
+## 컴파일 과정
 ### 1) c언어
 source -- 컴파일 --> exe
 ### 2) java
@@ -16,7 +16,7 @@ source -- (a.java) 컴파일 --> Byte code --(a.class) 인터프리터 (jvm)--> 
                          
 ### 3) kotlin
 source -- 컴파일 --> Byte code -- 인터프리터 --> running
-<APK>
+APK
 - Byte code에서 DEX파일을 만듬 (.class)
 - DEX을 받아 러닝 시켜주는 ART
                       
