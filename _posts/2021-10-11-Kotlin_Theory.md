@@ -20,25 +20,25 @@ APK
 - Byte code에서 DEX파일을 만듬 (.class)
 - DEX을 받아 러닝 시켜주는 ART
 
-<table>
+<table style="text-align:center">
   <tr>
     <td colspan="2">APP</td>
   </tr>
   <tr>
-    <td>Java</td>
+    <td colspan="2">Java</td>
   </tr>
   <tr>
     <td>C/C++</td>
     <td>ART</td>
   </tr>
   <tr>
-    <td>HAL</td>
+    <td colspan="2">HAL</td>
   </tr>
   <tr>
-    <td>Kernel</td>
+    <td colspan="2">Kernel</td>
   </tr>
   <tr>
-    <td>HW</td>
+    <td colspan="2">HW</td>
   </tr>
 </table>
                       
