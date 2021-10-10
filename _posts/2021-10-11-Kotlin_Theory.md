@@ -19,8 +19,8 @@ source -- 컴파일 --> Byte code -- 인터프리터 --> running
 APK
 - Byte code에서 DEX파일을 만듬 (.class)
 - DEX을 받아 러닝 시켜주는 ART
-
-<table style="text-align:center">
+<center>
+<table>
   <tr>
     <td colspan="2">APP</td>
   </tr>
@@ -41,6 +41,7 @@ APK
     <td colspan="2">HW</td>
   </tr>
 </table>
+</center>
                       
 ---
 # 1. 코틀린 개요
