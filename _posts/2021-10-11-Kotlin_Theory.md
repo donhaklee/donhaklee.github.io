@@ -1,4 +1,14 @@
-# 1. 1주차
+# 환경설정
+1) JDK(Java SE)
+- Java_Home
+- Path <br>
+
+2) Android Studio (JetBrains - intellij)
+- 안드로이드 sdk - API level 31
+- Plugin(sdk tools) - HAXM(Emulator : 하드웨어를 본 딴 소프트웨어)
+- Android Virtual Device
+---
+# 1. 코틀린 개요
 ### 1) class가 없어도 시작가능, c++과 비슷
 - Data Type : Int, Short, Byte, Float => class이기 때문에 대문자
 - Value, variable => class 타입의 변수이기 때문에 object가 된다.
@@ -16,3 +26,12 @@ var y : Int = 5
 
 
 ### 5) 함수
+```kotlin
+class Rect {
+  var r:Int
+  fun areaSize() {
+  }
+}
+// 
+var r : Rect = Rect()
+```
