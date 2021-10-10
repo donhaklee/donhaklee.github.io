@@ -22,7 +22,7 @@ APK
 
 <table>
   <tr>
-    <td rowspan="2">APP</td>
+    <td colspan="2">APP</td>
   </tr>
   <tr>
     <td>Java</td>
