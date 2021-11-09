@@ -1,20 +1,3 @@
-# My Project Link
-### University Project
-- Graduation Project : https://github.com/donhaklee/Project_Graduation <br>
--> Neural Style Transfer : https://github.com/donhaklee/Project_NeuralStyleTransfer <br>
--> Diagram : https://github.com/donhaklee/Project_GraduationDiagram <br>
-- Solar System : https://github.com/donhaklee/Project_OpenGL_Star <br>
-- Japan Web : https://github.com/donhaklee/Project_JapanWeb <br>
-- Japan App : https://github.com/donhaklee/Project_JapanAppHomework <br>
-- JavaProject : https://github.com/donhaklee/Project_javafinalproject <br>
-- AstronomyWeb : https://github.com/donhaklee/Project_AstronomyWeb <br>
-
-### For Study
-- Kotlin : https://github.com/donhaklee/Kotlin_Theory <br>
-- Machine Learning : https://github.com/donhaklee/Machine_Learning_Study
-
-### Personal  Project
-
 
 
 ---
