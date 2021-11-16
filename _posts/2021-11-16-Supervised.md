@@ -1,11 +1,5 @@
 # 지도학습 (supervised)
 ## 회귀 : Regression
-- Training Data를 이용하여 데이터의 특성과 상관관계 등을 파악하고 그 결과를 바탕으로 
-Training Data에 없는 미지의 데이터가 주어졌을 경우에, 그 결과를 연속적인 숫자 값으로 예측하는 것<br>
-- ex) 공부시간과 시험성적간의 관계, 집 평수와 집 가격간의 관계 등 <br>
-- input => learning => ask => predict
-- y = Wx + b에서 가중치(기울기) W와 y절편 bias를 구하는 개념
-- 오차 = t-(Wx+b)로 계산되며 오차가 크다면 우리가 임의로 설정한 직선의 가중치와 바이어스 값이 잘못된 것이고 오차가 작다면 직선의 가중치와 바이어스 값이 잘 된 것
 ### 1. Linear Regression
 - Loss function
 - Gradient Decent
@@ -13,6 +7,12 @@ Training Data에 없는 미지의 데이터가 주어졌을 경우에, 그 결�
 - Cross-Entropy
 ---
 # 1. Linear Regression
+- Training Data를 이용하여 데이터의 특성과 상관관계 등을 파악하고 그 결과를 바탕으로 
+Training Data에 없는 미지의 데이터가 주어졌을 경우에, 그 결과를 연속적인 숫자 값으로 예측하는 것
+- ex) 공부시간과 시험성적간의 관계, 집 평수와 집 가격간의 관계 등
+- input => learning => ask => predict
+- y = Wx + b에서 가중치(기울기) W와 y절편 bias를 구하는 개념
+- 오차 = t-(Wx+b)로 계산되며 오차가 크다면 우리가 임의로 설정한 직선의 가중치와 바이어스 값이 잘못된 것이고 오차가 작다면 직선의 가중치와 바이어스 값이 잘 된 것
 ## 1) Loss function
 #### 손실함수(loss function)
 ![Random](https://github.com/donhaklee/donhaklee.github.io/blob/14d4843fda29eb857edc42542bd8567be2dcec6d/images/lossfunction.PNG)
@@ -173,7 +173,24 @@ for step in range(8001):
 
 ---
 # 2. Logistic Regression - Classification
-## 1) Cross-entropy
+- Training Data 특성과 관계 등을 파악 한 후에 미지의 입력 데이터에 대해서 결과가 어떤 종류의 값으로 분류될 수 있는지를 예측하는 것
+- ex) 스팸문자 분류 [Spam(1) or Ham(0)], 암 판별 [악성종양(1) or 종양(0)]
+- input => learning => ask => predict
+- Training Data 특성과 분포를 나타내는 최적의 직선을 찾고 그 직선을 기준으로 데이터를 위(1) 또는 아래(0) 등으로 분류해주는 알고리즘
+- 이러한 Logistic Regression은 Classification 알고리즘 중에서도 정확도가 높은 알고리즘으로 알려져 있어서 Deep Learning에서 기본 Component로 사용됨
+- (x, t) => Regression(Wx+b) => classification(sigmoid) => true(1), false(0)
+- sigmoid 계산 값이 0.5보다 크면 결과로 1이 나올 확률이 높다는 것이기 때문에 출력 값 y는 1을 정의하고
+- sigmoid 계산값이 0.5미만이면 결과로 0이 나올 확률이 높다는 것이므로 출력 값 y는 0정의하여 classification 시스템을 구현할 수 있음
 
+
+
+## 1) Cross-entropy
+손실함수 (Cross-entropy) : 분류시스템 최종 출력 값 y는 sigmoid함수에 의해 논리적으로 1 또는 0값을 가지기 때문에 연속 값을 갖는 선형회귀 때와는 다른 손실함수가 필요함
+- 가중치 W와 bias는 수치미분으로 구할 수 있음
+![Random](https://github.com/donhaklee/donhaklee.github.io/blob/1c514ab2a51602a19c03e8112d6a715b9a0c2c3a/images/ClassificationLossFunction.PNG)
+- classification 최종 출력 값 y는 sigmoid함수에 의해 0~1 사이의 값을 갖는 확률적인 분류 모델이므로, 다음과 같이 확률변수 C를 이용해 출력 값을 나타낼 수 
+![Random](https://github.com/donhaklee/donhaklee.github.io/blob/7b5dd2446d487b46d03e73d6a9a8e07b684ffca2/images/plus.PNG)
+
+![Random](https://github.com/donhaklee/donhaklee.github.io/blob/1c514ab2a51602a19c03e8112d6a715b9a0c2c3a/images/ClassificationProcess.PNG)
 ---
 ## 2) Multi-Variable
