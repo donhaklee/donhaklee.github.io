@@ -38,8 +38,8 @@ Training Data에 없는 미지의 데이터가 주어졌을 경우에, 그 결�
 ---
 ## 3) Single & Multi-Variable Linear Regression
 ### 코딩 단계
-- (1) 슬라이싱 또는 list comprehension을 이용하여 입력 x와 정답 t를 numpy데이터형으로 분리
-- (2) W = numpy.random.rand(...), b = numpy.random.rand(...)
+(1) 슬라이싱 또는 list comprehension을 이용하여 입력 x와 정답 t를 numpy데이터형으로 분리<br>
+(2) W = numpy.random.rand(...), b = numpy.random.rand(...)
 ```python
 (3) regression 손실함수 정의
 # X, W, t, y 모두 numpy행렬
@@ -47,7 +47,7 @@ def loss_func(...) :
   y = numpy.dot(X,W) + b # 행렬곱
   return ( numpy.sum((t-y)**2)) / (len(x))
 
-(4) 학습률 알파 : learning_rate = 1e-3, or 1e-4 or 1e-5
+(4) 수치미분, 학습률 알파 : learning_rate = 1e-3, or 1e-4 or 1e-5
 
 (5) 가중치 W, 바이어스 b 를 업데이트하며 최소값 구하기
 f = lambda x : loss_func(...)
@@ -57,8 +57,8 @@ for step in range(6000) : # 6000은 임의값
 ```
 변환 행렬 식 : X * W + b = Y
 
-<br>
 ### Single variable 예제
+
 ```python
 # (1) 학습데이터 준비
 import numpy as np
