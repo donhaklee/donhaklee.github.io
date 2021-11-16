@@ -33,6 +33,7 @@ Training Data에 없는 미지의 데이터가 주어졌을 경우에, 그 결�
 - 편미분 값이 양수일 때는 현재의 W에서 편미분 값만큼 빼줘서 감소시켜야하고
 - 편미분 값이 음수일 때는 현재의 W에서 편미분 값만큼 더해줘서 증가시켜야한다.<br><br>
 
+### Linear Regression Process
 ![Random](https://github.com/donhaklee/donhaklee.github.io/blob/c7893ce350a4331548476842bf776e59860bad13/images/LinearRegressionProcess.PNG)
 
 ---
@@ -41,15 +42,15 @@ Training Data에 없는 미지의 데이터가 주어졌을 경우에, 그 결�
 (1) 슬라이싱 또는 list comprehension을 이용하여 입력 x와 정답 t를 numpy데이터형으로 분리<br>
 (2) W = numpy.random.rand(...), b = numpy.random.rand(...)
 ```python
-(3) regression 손실함수 정의
+#(3) regression 손실함수 정의
 # X, W, t, y 모두 numpy행렬
 def loss_func(...) :
   y = numpy.dot(X,W) + b # 행렬곱
   return ( numpy.sum((t-y)**2)) / (len(x))
 
-(4) 수치미분, 학습률 알파 : learning_rate = 1e-3, or 1e-4 or 1e-5
+#(4) 수치미분, 학습률 알파 : learning_rate = 1e-3, or 1e-4 or 1e-5
 
-(5) 가중치 W, 바이어스 b 를 업데이트하며 최소값 구하기
+#(5) 가중치 W, 바이어스 b 를 업데이트하며 최소값 구하기
 f = lambda x : loss_func(...)
 for step in range(6000) : # 6000은 임의값
   W -= learning_rate * numerical_derivative(f, W)
@@ -72,8 +73,8 @@ print("W = ", W, ", W.shape = ", W.shape, ", b = ", b, ", b.shape = ", b.shape)
 
 # (3) 손실함수 정의
 def loss_func(x, t) :
-  y = np.dot(x,W) + b
-  return (np.sum((t-y) ** 2)) / (len(x))
+  y = np.dot(x, W) + b
+  return ( np.sum((t-y) ** 2)) / (len(x) )
   
 # (4) 수치미분 및 utility함수 정의
 def numerical_derivative(f,x) :
@@ -128,12 +129,12 @@ W = np.random.rand(3,1) # 3x1행렬
 b = np.random.rand(1)
 print("W= ", W, ", W.shape = ", W.shape, ", b = ", b, ", b.shape = ", b.shape)
 
-# (3) 손실함수 E(W,b) 정의
+# (3) 손실함수 E(W,b) 정의 (simple과 동일)
 def loss_func(x, t):
   y = np.dot(x, W) + b
   return ( np.sum((t-y) ** 2)) / (len(x) )
 
-# (4) 수치미분 및 utility함수 정의 (single과 동일)
+# (4) 수치미분 및 utility함수 정의 (simple과 동일)
 def numerical_derivative(f,x) :
     delta_x = 1e-4
     grad = np.zeros_like(x)
@@ -158,7 +159,7 @@ def predict(x) :
   y = np.dot(x, W) + b
   return y
 
-# (5) 가중치 W, 바이어스 b를 업데이트하며 최소값 구하기 (single과 동일)
+# (5) 가중치 W, 바이어스 b를 업데이트하며 최소값 구하기 (simple과 동일)
 learning_rate = 1e-2
 f = lambda x : loss.func(x_data, t_data)
 print("Initial error value = ", error_val(x_data, t_data), "initial W = ", W, "\n", ", b = ", b)
@@ -186,11 +187,168 @@ for step in range(8001):
 
 ## 1) Cross-entropy
 손실함수 (Cross-entropy) : 분류시스템 최종 출력 값 y는 sigmoid함수에 의해 논리적으로 1 또는 0값을 가지기 때문에 연속 값을 갖는 선형회귀 때와는 다른 손실함수가 필요함
-- 가중치 W와 bias는 수치미분으로 구할 수 있음
+- 가중치 W와 bias는 수치미분으로 구할 수 있음 <br><br>
 ![Random](https://github.com/donhaklee/donhaklee.github.io/blob/1c514ab2a51602a19c03e8112d6a715b9a0c2c3a/images/ClassificationLossFunction.PNG)
-- classification 최종 출력 값 y는 sigmoid함수에 의해 0~1 사이의 값을 갖는 확률적인 분류 모델이므로, 다음과 같이 확률변수 C를 이용해 출력 값을 나타낼 수 
+- classification 최종 출력 값 y는 sigmoid함수에 의해 0~1 사이의 값을 갖는 확률적인 분류 모델이므로, 다음과 같이 확률변수 C를 이용해 출력 값을 나타낼 수 있음 <br><br>
 ![Random](https://github.com/donhaklee/donhaklee.github.io/blob/7b5dd2446d487b46d03e73d6a9a8e07b684ffca2/images/plus.PNG)
 
+### Classification Process
 ![Random](https://github.com/donhaklee/donhaklee.github.io/blob/1c514ab2a51602a19c03e8112d6a715b9a0c2c3a/images/ClassificationProcess.PNG)
 ---
-## 2) Multi-Variable
+## 2) simple & Multi-Variable
+### 코딩 단계
+(1) 슬라이싱 또는 list comprehension 등을 이용하여 입력 x와 정답 t를 numpy 타입으로 분리
+(2) W = numpy.random.rand(...), b = numpy.random.rand(...)
+```python
+#(3) classification 손실함수
+def sigmoid(x) :
+  return 1/(1+numpy.exp(-x))
+def loss_func(...):
+  delta = 1e-7 # log를 구할 땐 무한대값을 방지하기 위해 작은 값을 넣는다
+  z = numpy.dot(X,W) + b
+  y = sigmoid(z)
+  return -numpy.sum( t*numpy.log(y+delta) + (1-t) * numpy.log(1-y+delta) )
+
+#(4) 학습률 알파
+#(5) 가중치 W, 바이어스 b
+f = lambda x : loss_func(...)
+for step in range(6000) :
+  W -= learning_rate * numerical_derivative(f, W)
+  b -= learning_rate * numerical_derivative(f, b)
+```
+
+### Simple variable 예제
+```python
+#(1) 학습데이터 준비
+import numpy as np
+x_data = np.array([2,4,6,8,10,12,14,16,18,20]).reshape(10,1)
+t_data = np.array([0,0,0,0,0,0,1,1,1,1]).reshape(10,1)
+
+#(2) 임의의 직선 z = Wx+b 정의
+W = np.random.rand(1,1)
+b = np.random.rand(1)
+print("W = ", W, ", W.shape = ", W.shape, ", b = ", b, ", b.shape = ", b.shape)
+
+#(3) 손실함수 E(W,b) 정의
+def sigmoid(x) :
+  return 1/(1+np.exp(-x))
+def loss_func(x, t) :
+  delta = 1e-7
+  z = np.dot(x,W) + b
+  y = sigmoid(z)
+  # cross-entropy
+  return -np.sum( t*np.log(y+delta) + (1-t)*np.log((1-y) + delta) )
+  
+#(4) 수치미분 및 utility함수 정의
+def numerical_derivative(f,x) :
+  delta_x = 1e-4
+  grad = np.zeros_like(x)
+  it = np.nditer(x, flags = ['multi_index'], op_flags = ['readwrite'])
+  while not it.finished :
+     idx = it.multi_index
+     tmp_val = x[idx]
+     x[idx] = float(tmp_val) + delta_x
+     fx1 = f(x) # f(x+delta_x)
+     x[idx] = tmp_val - delta_x
+     fx2 = f(x) # f(x-delta_x)
+     grad[idx] = (fx1 - fx2) / (2*delta_x)
+     x[idx] = tmp_val
+     it.iternext()
+  return grad
+ 
+def error_val(x, t):
+  delta = 1e-7
+  z = np.dot(x, W) + b
+  y = sigmoid(z)
+  #cross-entropy
+  return -np.sum( t*np.log(y+delta) + (1-t)*np.log(1-y)+delta) )
+  
+def predict(x):
+  z = np.dot(x,W) + b
+  y = sigmoid(z)
+  if y > 0.5:
+    result = 1 # true
+  else :
+    result = 0 # false
+  return y, result
+  
+#(5) 학습율 초기화 및 손실함수가 최소가 될 때까지 W,b업데이트
+learning_rate = 1e-2
+f = lambda x : loss_function(x_data, t_data)  #f(x) = loss_func(x_data, t_data)
+print("Initial error value = ", error_val(x_data, t_data), "Initial W = ", "\n", ", b = ", b)
+for step in range(10001):
+  W -= learning_rate * numerical_derivative(f,W)
+  b -= learning_rate * numerical_derivative(f,b)
+  if(step % 400 == 0):
+    print("step = ", step, "error value = ", error_val(x_data, t_data), "W = ", W, ", b = ", b)
+
+```
+
+### Multi variable 예제
+```python
+#(1) 학습데이터 준비
+import numpy as np
+x_data = np.array([ [2,4], [4,11], [6,6], [8,5], [10,7], [12,16], [14,8], [16,3], [18,7] ])
+t_data = np.array([0,0,0,0,1,1,1,1,1]).reshape(9,1)
+
+#(2) 임의의 직선 z = W1x1 + W2x2 + b정의 (가중치 W, 바이어스 b초기화)
+W = np.random.rand(2,1) # 2X1 행렬
+b = np.random.rand(1)
+print("W = ", W, "W.shape = ", W.shape, ", b = ", b, ", b.shape = ", b.shape)
+
+
+#(3) 손실함수 E(W,b) 정의 (simple과 동일)
+def sigmoid(x) :
+  return 1/(1+np.exp(-x))
+def loss_func(x, t) :
+  delta = 1e-7
+  z = np.dot(x,W) + b
+  y = sigmoid(z)
+  # cross-entropy
+  return -np.sum( t*np.log(y+delta) + (1-t)*np.log((1-y) + delta) )
+  
+  
+#(4) 수치미분 및 utility함수 정의 (simple과 동일)
+def numerical_derivative(f,x) :
+  delta_x = 1e-4
+  grad = np.zeros_like(x)
+  it = np.nditer(x, flags = ['multi_index'], op_flags = ['readwrite'])
+  while not it.finished :
+     idx = it.multi_index
+     tmp_val = x[idx]
+     x[idx] = float(tmp_val) + delta_x
+     fx1 = f(x) # f(x+delta_x)
+     x[idx] = tmp_val - delta_x
+     fx2 = f(x) # f(x-delta_x)
+     grad[idx] = (fx1 - fx2) / (2*delta_x)
+     x[idx] = tmp_val
+     it.iternext()
+  return grad
+ 
+def error_val(x, t):
+  delta = 1e-7
+  z = np.dot(x, W) + b
+  y = sigmoid(z)
+  #cross-entropy
+  return -np.sum( t*np.log(y+delta) + (1-t)*np.log(1-y)+delta) )
+  
+def predict(x):
+  z = np.dot(x,W) + b
+  y = sigmoid(z)
+  if y > 0.5:
+    result = 1 # true
+  else :
+    result = 0 # false
+  return y, result
+  
+#(5) 학습율 초기화 및 손실함수가 최소가 될 때까지 W,b업데이트 (simple과 동일)
+learning_rate = 1e-2
+f = lambda x : loss_function(x_data, t_data)  #f(x) = loss_func(x_data, t_data)
+print("Initial error value = ", error_val(x_data, t_data), "Initial W = ", "\n", ", b = ", b)
+for step in range(10001):
+  W -= learning_rate * numerical_derivative(f,W)
+  b -= learning_rate * numerical_derivative(f,b)
+  if(step % 400 == 0):
+    print("step = ", step, "error value = ", error_val(x_data, t_data), "W = ", W, ", b = ", b)
+```
+
