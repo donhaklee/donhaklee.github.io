@@ -36,13 +36,140 @@ Training Data에 없는 미지의 데이터가 주어졌을 경우에, 그 결�
 ![Random](https://github.com/donhaklee/donhaklee.github.io/blob/c7893ce350a4331548476842bf776e59860bad13/images/LinearRegressionProcess.PNG)
 
 ---
-## 3) Multi-Variable Linear Regression
+## 3) Single & Multi-Variable Linear Regression
 ### 코딩 단계
-- 
+- (1) 슬라이싱 또는 list comprehension을 이용하여 입력 x와 정답 t를 numpy데이터형으로 분리
+- (2) W = numpy.random.rand(...), b = numpy.random.rand(...)
 ```python
+(3) regression 손실함수 정의
+# X, W, t, y 모두 numpy행렬
+def loss_func(...) :
+  y = numpy.dot(X,W) + b # 행렬곱
+  return ( numpy.sum((t-y)**2)) / (len(x))
 
+(4) 학습률 알파 : learning_rate = 1e-3, or 1e-4 or 1e-5
+
+(5) 가중치 W, 바이어스 b 를 업데이트하며 최소값 구하기
+f = lambda x : loss_func(...)
+for step in range(6000) : # 6000은 임의값
+  W -= learning_rate * numerical_derivative(f, W)
+  b -= learning_rate * numerical_derivative(f, b)
+```
+변환 행렬 식 : X * W + b = Y
+
+<br>
+### Single variable 예제
+```python
+# (1) 학습데이터 준비
+import numpy as np
+x_data = np.array([1,2,3,4,5]).reshape(5,1)
+t_data = np.array([2,3,4,5,6]).reshape(5,1)
+
+# (2) 임의의 직선 y = Wx + b정의 (임의의 값으로 가중치 W, 바이어스 b 초기화)
+W = np.random.rand(1,1)
+b = np.random.rand(1)
+print("W = ", W, ", W.shape = ", W.shape, ", b = ", b, ", b.shape = ", b.shape)
+
+# (3) 손실함수 정의
+def loss_func(x, t) :
+  y = np.dot(x,W) + b
+  return (np.sum((t-y) ** 2)) / (len(x))
+  
+# (4) 수치미분 및 utility함수 정의
+def numerical_derivative(f,x) :
+    delta_x = 1e-4
+    grad = np.zeros_like(x)
+    it = np.nditer(x, flags = ['multi_index'], op_flags = ['readwrite'])
+    while not it.finished :
+        idx = it.multi_index
+        tmp_val = x[idx]
+        x[idx] = float(tmp_val) + delta_x
+        fx1 = f(x) # f(x+delta_x)
+        x[idx] = tmp_val - delta_x
+        fx2 = f(x) # f(x-delta_x)
+        grad[idx] = (fx1 - fx2) / (2*delta_x)
+        x[idx] = tmp_val
+        it.iternext()
+    return grad
+
+def error_val(x,t) : # 손실함수 값 계산 함수, 입력변수 x t (numpy type)
+  y = np.dot(x,W) + b
+  return (np.sum((t-y) ** 2)) / (len(x))
+
+def predict(x) :
+  y = np.dot(x, W) + b
+  return y
+
+# (5) 가중치 W, 바이어스 b를 업데이트하며 최소값 구하기
+learning_rate = 1e-2
+f = lambda x : loss.func(x_data, t_data)
+print("Initial error value = ", error_val(x_data, t_data), "initial W = ", W, "\n", ", b = ", b)
+for step in range(8001):
+  W -= learning_rate * numerical_derivative(f, W)
+  b -= learning_rate * numerical_derivative(f, b)
+  if( step % 400 == 0):
+    print("step = ", step, "error value = ", error_val(x_data, t_data), "W = ", W, ", b = ",b)
 
 ```
+<br>
+
+### multi variable 예제
+x1W1 + x2W2 + x3W3 + b
+X * W + b = Y
+```python
+# (1) 학습데이터 준비
+import numpy as np
+loaded_data = np.loadtxt('./data-01-test-score.csv', delimiter=',', dtype = np.float32)
+x_data = loaded_data[ :, 0:-1 ] # 모든행에 대하여 1열부터 3열까지 슬라이싱을 통해 입력데이터로 가져옴
+t_data = loaded_data[ :, [-1] ] # 정답 데이터는 모든행에 대하여 4열의 데이터를 정답데이터로 정함
+
+# (2) 임의의 직선 y = W1x1 + W2x2 + W3x3 + b정의
+W = np.random.rand(3,1) # 3x1행렬
+b = np.random.rand(1)
+print("W= ", W, ", W.shape = ", W.shape, ", b = ", b, ", b.shape = ", b.shape)
+
+# (3) 손실함수 E(W,b) 정의
+def loss_func(x, t):
+  y = np.dot(x, W) + b
+  return ( np.sum((t-y) ** 2)) / (len(x) )
+
+# (4) 수치미분 및 utility함수 정의 (single과 동일)
+def numerical_derivative(f,x) :
+    delta_x = 1e-4
+    grad = np.zeros_like(x)
+    it = np.nditer(x, flags = ['multi_index'], op_flags = ['readwrite'])
+    while not it.finished :
+        idx = it.multi_index
+        tmp_val = x[idx]
+        x[idx] = float(tmp_val) + delta_x
+        fx1 = f(x) # f(x+delta_x)
+        x[idx] = tmp_val - delta_x
+        fx2 = f(x) # f(x-delta_x)
+        grad[idx] = (fx1 - fx2) / (2*delta_x)
+        x[idx] = tmp_val
+        it.iternext()
+    return grad
+    
+def error_val(x,t) : # 손실함수 값 계산 함수, 입력변수 x t (numpy type)
+  y = np.dot(x,W) + b
+  return (np.sum((t-y) ** 2)) / (len(x))
+
+def predict(x) :
+  y = np.dot(x, W) + b
+  return y
+
+# (5) 가중치 W, 바이어스 b를 업데이트하며 최소값 구하기 (single과 동일)
+learning_rate = 1e-2
+f = lambda x : loss.func(x_data, t_data)
+print("Initial error value = ", error_val(x_data, t_data), "initial W = ", W, "\n", ", b = ", b)
+for step in range(8001):
+  W -= learning_rate * numerical_derivative(f, W)
+  b -= learning_rate * numerical_derivative(f, b)
+  if( step % 400 == 0):
+    print("step = ", step, "error value = ", error_val(x_data, t_data), "W = ", W, ", b = ",b)
+
+```
+
 
 ---
 # 2. Logistic Regression - Classification
